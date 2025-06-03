@@ -29,12 +29,13 @@ const KEYS: string[] = [
 ]
 
 type KeyboardProps = {
+   disabled: boolean, 
    activeLetters: string[], 
    inactiveLetters: string[], 
    addGuessedLetter: (letter: string) => void
 }
 
-function Keyboard({activeLetters, inactiveLetters, addGuessedLetter}: KeyboardProps) {
+function Keyboard({disabled,activeLetters, inactiveLetters, addGuessedLetter}: KeyboardProps) {
     return (
         <div className={style.keyboard}>
             {KEYS.map((key) => {
@@ -44,7 +45,7 @@ function Keyboard({activeLetters, inactiveLetters, addGuessedLetter}: KeyboardPr
                     <button onClick={() => addGuessedLetter(key.toLowerCase())} 
                             className={`${style.button} ${isActive ? style.active : ""}
                             ${isInactive ? style.inactive : ""}`}
-                            disabled= {isInactive || isActive} 
+                            disabled= {isInactive || isActive || disabled} 
                             key={key}
                     >{key}</button>
                 )
