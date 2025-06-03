@@ -75,16 +75,16 @@ const LeftLeg = (
     }} />
 )
 
+const BodyParts = [Head, Body, RightArm, LeftArm, RightLeg, LeftLeg]
 
-function HangmanDrawing() {
+type HangmanDrawingProps = {
+    numberOfGuesses: number;
+}
+
+function HangmanDrawing({numberOfGuesses}: HangmanDrawingProps) {
     return(
         <div className={style.hangmanStructure}>
-            {Head}
-            {Body}
-            {RightArm}
-            {LeftArm}
-            {RightLeg}
-            {LeftLeg}
+            {BodyParts.slice(0, numberOfGuesses)}
 
             <div style={{height: "50px", 
                         width: "10px", 
