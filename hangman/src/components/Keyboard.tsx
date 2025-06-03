@@ -38,9 +38,13 @@ function Keyboard({activeLetters, inactiveLetters, addGuessedLetter}: KeyboardPr
     return (
         <div className={style.keyboard}>
             {KEYS.map((key) => {
+                const isActive = activeLetters.includes(key.toLowerCase())
+                const isInactive = inactiveLetters.includes(key.toLowerCase())
                 return (
-                    <button onClick={() => addGuessedLetter(key)} 
-                            className={style.button} 
+                    <button onClick={() => addGuessedLetter(key.toLowerCase())} 
+                            className={`${style.button} ${isActive ? style.active : ""}
+                            ${isInactive ? style.inactive : ""}`}
+                            disabled= {isInactive || isActive} 
                             key={key}
                     >{key}</button>
                 )
